@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MigracionToken</string>
+    <string name="texto_migracion">Migracion de token</string>
+    <string name="texto_siguiente">Siguiente</string>
+    <string name="texto_activar_token">Activar Token</string>
+    <string name="texto_fragmento_a">A</string>
+    <string name="texto_fragmento_b">B</string>
+</resources>
