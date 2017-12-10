@@ -1,11 +1,11 @@
-package com.example.mauriciogodinez.migraciontoken;
+package com.example.mauriciogodinez.migraciontoken.utils;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.text.Layout;
-import android.view.View;
+
+import com.example.mauriciogodinez.migraciontoken.R;
 
 /*
  * Created by mauriciogodinez on 07/10/17.
@@ -13,24 +13,29 @@ import android.view.View;
 
 public class TokenAdapter extends FragmentPagerAdapter {
 
+    private Bundle mBundle;
+    private TokenFragment fToken;
+
     public TokenAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        Bundle bundle = new Bundle();
-        TokenFragment tokenF = new TokenFragment();
+        mBundle = new Bundle();
+        fToken = new TokenFragment();
 
         switch (position){
             case 0:
-                bundle.putInt("page", R.layout.fragment_a);
-                tokenF.setArguments(bundle);
-                return tokenF;
+                mBundle.putInt("page", R.layout.fragment_a);
+                fToken.setArguments(mBundle);
+
+                return fToken;
             case 1:
-                bundle.putInt("page", R.layout.fragment_b);
-                tokenF.setArguments(bundle);
-                return tokenF;
+                mBundle.putInt("page", R.layout.fragment_b);
+                fToken.setArguments(mBundle);
+
+                return fToken;
         }
         return null;
     }
