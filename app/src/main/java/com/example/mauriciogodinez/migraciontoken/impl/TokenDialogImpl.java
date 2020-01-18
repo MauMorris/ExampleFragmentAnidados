@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.mauriciogodinez.migraciontoken.R;
 import com.example.mauriciogodinez.migraciontoken.constructor.TokenDialogView;
 import com.example.mauriciogodinez.migraciontoken.ui.TokenDialogFragment;
-import com.example.mauriciogodinez.migraciontoken.utils.TokenAdapter;
+import com.example.mauriciogodinez.migraciontoken.ui.utils.TokenAdapter;
 
 /*
  * Created by mauriciogodinez on 10/12/17.

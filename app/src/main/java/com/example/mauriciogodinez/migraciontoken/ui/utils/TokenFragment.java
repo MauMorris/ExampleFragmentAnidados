@@ -1,4 +1,4 @@
-package com.example.mauriciogodinez.migraciontoken.utils;
+package com.example.mauriciogodinez.migraciontoken.ui.utils;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

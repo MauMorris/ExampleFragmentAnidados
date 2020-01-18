@@ -6,7 +6,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.view.Window;
 
-import com.example.mauriciogodinez.migraciontoken.utils.TokenAdapter;
+import com.example.mauriciogodinez.migraciontoken.ui.utils.TokenAdapter;
 
 /*
  * Created by mauriciogodinez on 10/12/17.

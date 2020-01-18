@@ -1,53 +1,68 @@
 package com.example.mauriciogodinez.migraciontoken.ui;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mauriciogodinez.migraciontoken.anim.PageTransformEjemplo;
 import com.example.mauriciogodinez.migraciontoken.R;
+import com.example.mauriciogodinez.migraciontoken.databinding.AlertTokenViewpagerBinding;
 import com.example.mauriciogodinez.migraciontoken.impl.TokenDialogImpl;
-import com.example.mauriciogodinez.migraciontoken.utils.TokenAdapter;
+import com.example.mauriciogodinez.migraciontoken.ui.utils.TokenAdapter;
 
 /*
  * Created by mauriciogodinez on 07/10/17.
  */
 public class TokenDialogFragment extends DialogFragment {
-    private AppCompatButton bDialogo, bCerrar;
-
-    private ViewPager mViewpager;
     private TokenAdapter mAdapter;
 
     private TokenDialogImpl mPresenter;
 
+    private AlertTokenViewpagerBinding mDataBinding;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.alert_token_viewpager,container);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        bCerrar = view.findViewById(R.id.boton_cerrar);
-        bDialogo = view.findViewById(R.id.boton_alert);
-        mViewpager = view.findViewById(R.id.viewpager_alert);
+         mDataBinding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.alert_token_viewpager,
+                container,
+                false);
 
-        mAdapter = new TokenAdapter(getChildFragmentManager());
+        View view = mDataBinding.getRoot();
 
         mPresenter = new TokenDialogImpl(getContext(), this);
 
-        bDialogo.setText(getResources().getText(R.string.texto_siguiente));
-        mViewpager.setAdapter(mAdapter);
-
-        bCerrar.setOnClickListener(mPresenter.clicCerrar());
-        bDialogo.setOnClickListener(mPresenter.clicSiguiente(mViewpager));
-        mViewpager.addOnPageChangeListener(mPresenter.pageChange(getActivity(), mAdapter, mViewpager, bDialogo));
-
-        mViewpager.setPageTransformer(true, new PageTransformEjemplo());
+        setViews(mDataBinding);
+        setListeners(mDataBinding);
 
         return view;
+    }
+
+    private void setViews(AlertTokenViewpagerBinding mDataBinding) {
+        mDataBinding.botonSiguienteAlert.setText(getResources().getText(R.string.texto_siguiente));
+
+        mAdapter = new TokenAdapter(getChildFragmentManager());
+
+        mDataBinding.viewpagerAlert.setAdapter(mAdapter);
+        mDataBinding.viewpagerAlert.setPageTransformer(true, new PageTransformEjemplo());
+    }
+
+    private void setListeners(AlertTokenViewpagerBinding mDataBinding) {
+        mDataBinding.botonCerrar.setOnClickListener(mPresenter.clicCerrar());
+        mDataBinding.botonSiguienteAlert.setOnClickListener(mPresenter.clicSiguiente(mDataBinding.viewpagerAlert));
+
+        mDataBinding.viewpagerAlert.addOnPageChangeListener(
+                mPresenter.pageChange(getActivity(),
+                        mAdapter,
+                        mDataBinding.viewpagerAlert,
+                        mDataBinding.botonSiguienteAlert));
     }
 
     @Override
