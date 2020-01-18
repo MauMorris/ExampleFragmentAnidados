@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.mauriciogodinez.migraciontoken.R;
+import com.example.mauriciogodinez.migraciontoken.ui.TokenFragment;
 
 /*
  * Created by mauriciogodinez on 07/10/17.

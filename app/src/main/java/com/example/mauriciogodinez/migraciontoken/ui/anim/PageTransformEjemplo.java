@@ -1,4 +1,4 @@
-package com.example.mauriciogodinez.migraciontoken.anim;
+package com.example.mauriciogodinez.migraciontoken.ui.anim;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mauriciogodinez.migraciontoken.anim.PageTransformEjemplo;
+import com.example.mauriciogodinez.migraciontoken.ui.anim.PageTransformEjemplo;
 import com.example.mauriciogodinez.migraciontoken.R;
 import com.example.mauriciogodinez.migraciontoken.databinding.AlertTokenViewpagerBinding;
 import com.example.mauriciogodinez.migraciontoken.impl.TokenDialogImpl;
