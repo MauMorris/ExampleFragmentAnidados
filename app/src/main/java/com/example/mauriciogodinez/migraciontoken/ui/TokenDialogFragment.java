@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.mauriciogodinez.migraciontoken.ui.anim.PageTransformEjemplo;
 import com.example.mauriciogodinez.migraciontoken.R;
@@ -28,6 +27,17 @@ public class TokenDialogFragment extends DialogFragment {
     private TokenAdapter mAdapter;
 
     private AlertTokenViewpagerBinding mDataBinding;
+    private MainActivityCommunicationCallback mCalback;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCalback = (MainActivityCommunicationCallback) context;
+        } catch (Exception e) {
+            Log.v(LOG_TAG, "There is no callback");
+        }
+    }
 
     @Nullable
     @Override
@@ -80,7 +90,7 @@ public class TokenDialogFragment extends DialogFragment {
     View.OnClickListener cerrar = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            dismiss();
+            mCalback.dismissTokenFragment();
         }
     };
 
@@ -111,9 +121,7 @@ public class TokenDialogFragment extends DialogFragment {
                 case 1:
                     mDataBinding.botonSiguienteAlert.setText(getResources().getText(R.string.texto_activar_token));
                     mDataBinding.botonSiguienteAlert.setOnClickListener(clicShowToken(
-                            getContext(),
-                            "Muestra Actividad para Migrar Token",
-                            Toast.LENGTH_SHORT));
+                            "Muestra Actividad para Migrar Token"));
                     break;
                 default:
                     break;
@@ -125,16 +133,11 @@ public class TokenDialogFragment extends DialogFragment {
         }
     };
 
-    View.OnClickListener clicShowToken(final Context context, final String mensaje, final int toastLength) {
+    View.OnClickListener clicShowToken(final String mensaje) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (toastLength == Toast.LENGTH_LONG || toastLength == Toast.LENGTH_SHORT)
-                    Toast.makeText(context, mensaje, toastLength).show();
-                else
-                    Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
-
-                dismiss();
+                mCalback.tokenFragmentSendData(mensaje);
             }
         };
     }
